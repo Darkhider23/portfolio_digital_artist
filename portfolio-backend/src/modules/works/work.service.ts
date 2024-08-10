@@ -44,4 +44,11 @@ export class WorkService {
       throw new NotFoundException(`Work with ID ${id} not found`);
     }
   }
+
+  async removetitle(title: string): Promise<void> {
+    const result = await this.workModel.deleteOne({ title }).exec();
+    if (result.deletedCount === 0) {
+      throw new NotFoundException(`Work with title "${title}" not found`);
+    }
+  }
 }

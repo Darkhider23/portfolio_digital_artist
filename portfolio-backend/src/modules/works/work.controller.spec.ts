@@ -82,4 +82,12 @@ describe('WorkController', () => {
       expect(service.remove).toHaveBeenCalledWith(id);
     });
   });
+  describe('removetitle', () => {
+    it('should remove a work by id', async () => {
+      const title = 'some-title';
+      jest.spyOn(service, 'removetitle').mockResolvedValue(undefined);
+      await controller.remove(title);
+      expect(service.remove).toHaveBeenCalledWith(title);
+    });
+  });
 });

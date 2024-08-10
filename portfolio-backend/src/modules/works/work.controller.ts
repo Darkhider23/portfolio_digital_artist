@@ -38,4 +38,9 @@ export class WorkController {
   remove(@Param('id') id: string): Promise<void> {
     return this.workService.remove(id);
   }
+
+  @Delete('/title/:title')
+  removetitle(@Param('title') title: string): Promise<void> {
+    return this.workService.removetitle(title);
+  }
 }

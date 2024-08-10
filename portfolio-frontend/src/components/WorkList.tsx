@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
+import WorkItem from './WorkItem'; // Adjust the import path as necessary
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import WorkItem from './WorkItem';
-import './WorkList.css'
+import { Work } from './types';
 
 const WorkList: React.FC = () => {
-  const [works, setWorks] = useState([]);
 
-  // Access environment variable
+  const [works, setWorks] = useState<Work[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+ 
+
   const baseURL = process.env.REACT_APP_API_BASE_URL;
   // const baseURL = 'http://localhost:3000';
 
@@ -18,44 +20,42 @@ const WorkList: React.FC = () => {
   });
 
   useEffect(() => {
-    api.get('/works').then(response => {
-      setWorks(response.data);
-    });
+    const fetchWorks = async () => {
+      try {
+        const response = await api.get<Work[]>('/works');
+        setWorks(response.data);
+        setLoading(false);
+      } catch (error: any) {
+        setError('Failed to fetch data');
+        setLoading(false);
+      }
+    };
+
+    fetchWorks();
   }, []);
 
-  const handleDelete = (id: number) => {
-    api.delete(`/works/${id}`).then(() => {
-      setWorks(works.filter((work: any) => work.id !== id));
-    });
+  const handleDelete = (id: string) => {
+    setWorks(works.filter(work => work.id !== id));
   };
 
-  const[showDescription, setShowDescription] = useState(false);
-
-  const toggleDescription = () => {
-    setShowDescription(!showDescription);
+  const handleUpdate = (id: string) => {
+    // Implement the update logic here
+    console.log(`Update work with id ${id}`);
+    // For example, you might want to show a modal with a form to edit the work item
   };
 
   return (
-    <div>
-      <h1>Portfolio</h1>
-      {/* <ul>
-        {works.map((work: any) => (
-          <WorkItem key={work.id} work={work} onDelete={handleDelete} />
+    <div className='card-grid'>
+      
+        {works.map(work => (
+          <WorkItem
+            key={work.id}
+            work={work}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         ))}
-      </ul> */}
-      <div className="card-container">
-        <div className="card-image"
-        style={{backgroundImage: `url('/work_images/image1.jpg')`}}>
-          <button className="show-description-button" onClick={toggleDescription}>
-            {showDescription ? 'Hide Description' : 'Show Description'}
-          </button>
-          <div className={`card-description ${showDescription ? 'show' : ''}`}>
-            <h2 className="card-title">Card Title 1</h2>
-            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </div>
-      </div>
-
+      
     </div>
   );
 };

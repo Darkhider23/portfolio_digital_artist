@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './WorkList.css';
-import { DeleteIcon, EditIcon } from '../Icons';
+import '../styles/WorkList.css';
+import { DeleteIcon, EditIcon } from '../styles/Icons';
 
 interface WorkItemProps {
   work: {

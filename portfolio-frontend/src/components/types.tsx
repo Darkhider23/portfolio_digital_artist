@@ -5,6 +5,7 @@ export interface Work {
     title: string;
     description: string;
     clientUrl?: string;
+    status?:string,
   }
   
   export interface WorkItemProps {

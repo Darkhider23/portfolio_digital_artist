@@ -1,33 +1,31 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust min width as needed */
+    gap: 10rem;
+    align-items: stretch;
+    margin: 0 auto; 
+    max-width: 1200px;
+    padding: 0 1rem; 
+}
+
 .card-container {
-    position: relative;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0; 
+    padding: 1rem; 
     border-radius: 0.5rem;
-    max-width: 25rem;
+    max-width: 30rem;
     width: 100%;
 }
 
-/* Container for the grid layout */
-.card-grid {
-    padding-left: 5%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-    gap: 3rem;
-    align-items: stretch
-}
 
 .card-image {
     background-size: cover;
-    /* Ensure background covers the entire area */
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
     border-radius: 1rem;
     height: 30rem;
     overflow: hidden;
-    /* Hide overflow to keep title within bounds */
     transition: all 0.5s ease-in-out;
-    /* Smooth transition for hover effect */
 }
 
 
@@ -145,47 +143,3 @@
         transform: translateY(50px);
     }
 }
-
-
-
-.edit-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-  }
-  
-  .edit-popup form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .edit-popup input,
-  .edit-popup textarea {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ccc;
-  }
-  
-  .edit-popup button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-  
-  .edit-popup button[type="submit"] {
-    background-color: green;
-    color: white;
-    border: none;
-  }
-  
-  .edit-popup button[type="button"] {
-    background-color: red;
-    color: white;
-    border: none;
-  }

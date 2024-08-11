@@ -48,16 +48,16 @@ const WorkList: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-      <div className="card-grid">
-        {filteredWorks.map(work => (
-          <WorkItem
-            key={work._id}
-            work={work}
-            onDelete={handleDelete}
-            onUpdate={handleUpdate}
-          />
-        ))}
-      </div>
+    <div className="card-grid">
+      {filteredWorks.map(work => (
+        <WorkItem
+          key={work._id}
+          work={work}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
+      ))}
+    </div>
   );
 };
 

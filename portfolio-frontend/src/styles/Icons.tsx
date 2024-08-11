@@ -1,5 +1,5 @@
 // Import specific icons from the react-icons library
-import { FaHome, FaUser, FaCog } from 'react-icons/fa';
+import { FaHome, FaUser, FaCog, } from 'react-icons/fa';
 import { MdFavorite, MdSettings } from 'react-icons/md';
 import { AiFillHeart, AiOutlineSearch } from 'react-icons/ai';
 import { BiShow, BiHide } from "react-icons/bi";

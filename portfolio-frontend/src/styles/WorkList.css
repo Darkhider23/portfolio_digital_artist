@@ -1,19 +1,24 @@
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust min width as needed */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Adjust min width as needed */
     gap: 10rem;
     align-items: stretch;
-    margin: 0 auto; 
+    margin: 0 auto;
     max-width: 1200px;
-    padding: 0 1rem; 
+    padding: 0 1rem;
 }
 
 .card-container {
-    margin: 0; 
-    padding: 1rem; 
+    margin: 0;
+    padding: 1rem;
     border-radius: 0.5rem;
     max-width: 30rem;
     width: 100%;
+}
+
+.card-grid> :nth-child(-n+3) {
+    margin-top: 5em;
 }
 
 
@@ -46,9 +51,7 @@
     transition: all 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
-    /* Align text vertically */
     justify-content: flex-end;
-    /* Push content to the bottom */
 }
 
 .card-description .card-text {
@@ -56,6 +59,7 @@
     top: 3em;
     bottom: 10%;
     overflow-y: auto;
+    right:5em;
 }
 
 .card-description.show {
@@ -66,9 +70,13 @@
 
 .card-title {
     font-size: 1.125rem;
+    margin: 0 auto 0 auto;
+    padding: 5px;
+    width: 30%;
+    border-radius: 20px;
     font-weight: bold;
     color: white;
-    mix-blend-mode: difference;
+    background-color: rgba(59, 56, 56, 0.918);
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -103,7 +111,7 @@
     padding: 0.3em;
     display: flex;
     align-content: center;
-    color:white;
+    color: white;
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
@@ -112,9 +120,10 @@
     z-index: 10;
     font-size: 24px;
 }
+
 .update-button:hover,
 .delete-button:hover,
-.show-description-button:hover{
+.show-description-button:hover {
     transform: scale(1.1);
     transition: .3s ease-in-out;
     background-color: rgb(37, 36, 36);

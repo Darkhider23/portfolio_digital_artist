@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
+import { FaHome } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="nav-left">
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/">Home <FaHome/></Link></li>
         </ul>
       </div>
       <div className="nav-title">

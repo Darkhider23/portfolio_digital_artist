@@ -11,7 +11,7 @@ const WorkForm: React.FC<WorkFormProps> = ({ isEdit = false }) => {
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [clientUrl, setClientUrl] = useState('');
-  const [status, setStatus] = useState('DISPLAYED');
+  const [status, setStatus] = useState('displayed');
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -25,7 +25,7 @@ const api = axios.create({
 
   useEffect(() => {
     if (isEdit && id) {
-      axios.get(`/works/${id}`).then(response => {
+      api.get(`/works/${id}`).then(response => {
         const work = response.data;
         setTitle(work.title);
         setDescription(work.description);
@@ -37,12 +37,14 @@ const api = axios.create({
   }, [isEdit, id]);
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log(title,description,imageUrl,clientUrl,status)
     e.preventDefault();
     const work = { title, description, imageUrl, clientUrl, status };
+    console.log(work);
     if (isEdit && id) {
-      api.patch(`/api/works/${id}`, work).then(() => navigate('/'));
+      api.patch(`/works/${id}`, work).then(() => navigate('/'));
     } else {
-      api.post('/api/works', work).then(() => navigate('/'));
+      api.post('/works', work).then(() => navigate('/'));
     }
   };
 
@@ -53,8 +55,8 @@ const api = axios.create({
       <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="Image URL" required />
       <input type="text" value={clientUrl} onChange={(e) => setClientUrl(e.target.value)} placeholder="Client URL" />
       <select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value="DISPLAYED">Displayed</option>
-        <option value="HIDDEN">Hidden</option>
+        <option value="displayed">Displayed</option>
+        <option value="hidden">Hidden</option>
       </select>
       <button type="submit">{isEdit ? 'Update Work' : 'Add Work'}</button>
     </form>

@@ -5,7 +5,7 @@ const EditWork: React.FC = () => {
   return (
     <div>
       <h1>Edit Work</h1>
-      <WorkForm isEdit={true} />
+      <WorkForm isEdit={true}/>
     </div>
   );
 };

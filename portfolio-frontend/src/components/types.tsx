@@ -1,14 +1,15 @@
 // types.ts
 export interface Work {
-    id: string;
+    _id: string;
     imageUrl: string;
     title: string;
     description: string;
+    clientUrl?: string;
   }
   
   export interface WorkItemProps {
     work: Work;
-    onDelete: (id: string) => void;
-    onUpdate: (id: string) => void;
+    onDelete: (_id: string) => void;
+    onUpdate: (_id: string) => void;
   }
   

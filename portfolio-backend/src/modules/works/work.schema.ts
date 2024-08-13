@@ -10,16 +10,16 @@ export class Work {
   title: string;
 
   @Prop()
-  description: string;
+  description?: string;
 
   @Prop()
-  imageUrl: string;
+  imageUrl?: string;
 
   @Prop()
-  clientUrl: string;
+  clientUrl?: string;
 
   @Prop({ enum: WorkStatus, default: WorkStatus.DISPLAYED })
-  status: WorkStatus;
+  status?: WorkStatus;
 }
 
 export const WorkSchema = SchemaFactory.createForClass(Work);

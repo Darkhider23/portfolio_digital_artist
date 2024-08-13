@@ -9,7 +9,7 @@ import { UpdateWorkDto } from './dto/update-work.dto';
 export class WorkService {
   constructor(
     @InjectModel(Work.name) private readonly workModel: Model<WorkDocument>,
-  ) {}
+  ) { }
 
   async create(createWorkDto: CreateWorkDto): Promise<WorkDocument> {
     const createdWork = new this.workModel(createWorkDto);

@@ -3,6 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { WorkModule } from './modules/works/work.module'; // Ensure this path is correct
 import { Work, WorkSchema } from './modules/works/work.schema';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -23,4 +25,4 @@ import { Work, WorkSchema } from './modules/works/work.schema';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

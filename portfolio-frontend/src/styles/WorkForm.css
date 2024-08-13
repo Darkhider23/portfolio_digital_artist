@@ -1,0 +1,46 @@
+.add-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem auto;
+    max-width: 1200x;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    background-image: linear-gradient(-225deg, #a9cef8 50%, #d6b5fc 50%);
+    padding: 40px;
+    border-radius: 20px
+}
+
+.title-text,
+.imageurl-text,
+.clienturl-text {}
+
+input,
+textarea {
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.212);
+    color:rgb(43, 36, 36)
+}
+
+.action-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem
+}
+
+.action-container select,
+.action-container button {
+    font-size: 20px;
+    background-color: aqua;
+    padding: 8px;
+    border-radius: 15px;
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+}

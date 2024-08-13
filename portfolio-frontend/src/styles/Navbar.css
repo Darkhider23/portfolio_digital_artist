@@ -1,9 +1,13 @@
+/* Navbar.css */
+
 .navbar {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 1rem;
-    background-color: #502525ad;
-    color: white;
+    background-color: transparent;
+    backdrop-filter: blur(40px);
+    color: var(--navtext);
     position: sticky;
     top: 0;
     width: 100%;
@@ -11,22 +15,31 @@
     justify-content: space-between;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+    box-sizing: border-box;
+    box-shadow: -13px 24px 15px -3px rgba(0, 0, 0, 0.212);
 }
 
 .nav-title {
     text-align: center;
     flex: 1;
     position: relative;
-    margin-left: 20em;
+    margin-left: 12rem;
     width: 100%;
-    pointer-events: none; /* Disable pointer events to avoid issues */
+    pointer-events: none;
 }
 
 .nav-left,
 .nav-right {
     display: flex;
     align-items: center;
+}
+
+.icon {
+    transform: translateY(2px);
+}
+
+.home {
+    font-size: 19px;
 }
 
 .nav-left ul,
@@ -45,7 +58,7 @@
 
 .nav-left a,
 .nav-right a {
-    color: white;
+    color: var(--navtext);
     text-decoration: none;
     padding: 0.5rem;
 }
@@ -53,4 +66,45 @@
 .nav-left a:hover,
 .nav-right a:hover {
     text-decoration: underline;
+}
+
+/* Responsive styles */
+.menu-icon {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links.active {
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .navbar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .text {
+        display: none;
+    }
+
+    .nav-title {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .nav-left a {
+        font-size: 0.9rem;
+    }
+
+    .nav-title {
+        display: none;
+    }
 }

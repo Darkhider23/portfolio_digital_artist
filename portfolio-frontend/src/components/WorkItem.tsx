@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/WorkList.css';
-import { DeleteIcon, EditIcon } from '../styles/Icons';
+import { DeleteIcon, EditIcon, ShowBook, HideBook } from '../styles/Icons';
+import axios from 'axios';
 
 interface WorkItemProps {
   work: {
@@ -10,17 +11,21 @@ interface WorkItemProps {
     imageUrl: string;
     title: string;
     description: string;
+    status: 'displayed' | 'hidden'; // Add status field to the work item
   };
-  onDelete: (id: string) => void;
-  onUpdate: (id: string) => void;
-
+  onDelete: (_id: string) => void;
+  onUpdate: (_id: string) => void;
 }
 
 const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
+  const [status, setStatus] = useState(work.status); // State to track current status
 
   const navigate = useNavigate();
+
+  const baseURL = process.env.REACT_APP_API_BASE_URL;
+  const api = axios.create({ baseURL });
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => {
@@ -31,14 +36,25 @@ const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
   const toggleDescription = () => setShowDescription(prev => !prev);
 
   const handleEdit = () => {
-    navigate(`/works/edit/${work._id}`); // Redirect to the EditWork page with the work ID
+    navigate(`/works/edit/${work._id}`);
+  };
+
+  const toggleStatus = async () => {
+    const newStatus = status === 'displayed' ? 'hidden' : 'displayed';
+    try {
+      await api.patch(`/works/${work._id}/status`, { status: newStatus });
+      setStatus(newStatus);
+      navigate(0);
+    } catch (error) {
+      console.error('Failed to update status', error);
+    }
   };
 
   return (
     <div className="card-container">
       <div
         className={`card-image ${isHovered ? 'over' : 'out'}`}
-        style={{ backgroundImage: `url(/work_images/${work.imageUrl}.jpg)` }}
+        style={{ backgroundImage: `url(${baseURL}/${work.imageUrl})` }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -54,7 +70,10 @@ const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
             <DeleteIcon />
           </button>
           <button className="show-description-button" onClick={toggleDescription}>
-            {showDescription ? <FaEyeSlash style={{ fontSize: '24px' }} /> : <FaEye style={{ fontSize: '24px' }} />}
+            {showDescription ? <HideBook style={{ fontSize: '24px' }} /> : <ShowBook style={{ fontSize: '24px' }} />}
+          </button>
+          <button className="status-toggle-button" onClick={toggleStatus}>
+            {status === 'displayed' ? <FaEyeSlash /> : <FaEye />}
           </button>
         </div>
       </div>

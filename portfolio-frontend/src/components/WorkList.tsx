@@ -52,7 +52,10 @@ const WorkList: React.FC = () => {
       {filteredWorks.map(work => (
         <WorkItem
           key={work._id}
-          work={work}
+          work={{
+            ...work,
+            status: work.status || 'displayed',
+          }}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
         />

@@ -1,22 +1,23 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { WorkStatus } from '../entities/work.entity';
+import { IsString, IsOptional, IsEnum } from 'class-validator';
+import { WorkStatus } from '../work-status.enum';
 
 export class CreateWorkDto {
   @IsString()
   title: string;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   description?: string;
 
   @IsString()
-  imageUrl: string;
-
   @IsOptional()
+  imageUrl?: string;
+
   @IsString()
+  @IsOptional()
   clientUrl?: string;
 
-  @IsOptional()
   @IsEnum(WorkStatus)
+  @IsOptional()
   status?: WorkStatus;
 }

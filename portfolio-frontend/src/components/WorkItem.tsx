@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FiExternalLink } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
 import '../styles/WorkList.css';
 import { DeleteIcon, EditIcon, ShowBook, HideBook } from '../styles/Icons';
@@ -11,7 +12,8 @@ interface WorkItemProps {
     imageUrl: string;
     title: string;
     description: string;
-    status: 'displayed' | 'hidden'; // Add status field to the work item
+    status: 'displayed' | 'hidden';
+    clientUrl: string; // Add clientUrl field to the work item
   };
   onDelete: (_id: string) => void;
   onUpdate: (_id: string) => void;
@@ -20,7 +22,7 @@ interface WorkItemProps {
 const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
-  const [status, setStatus] = useState(work.status); // State to track current status
+  const [status, setStatus] = useState(work.status);
 
   const navigate = useNavigate();
 
@@ -50,6 +52,19 @@ const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
     }
   };
 
+  const openExternalLink = () => {
+    if (work.clientUrl) {
+      // Check if the URL starts with http:// or https://
+      const url = work.clientUrl.startsWith('http://') || work.clientUrl.startsWith('https://')
+        ? work.clientUrl
+        : `https://${work.clientUrl}`;
+
+      window.open(url, '_blank'); // Opens the client URL in a new tab
+    } else {
+      console.warn('No client URL provided');
+    }
+  };
+
   return (
     <div className="card-container">
       <div
@@ -74,6 +89,9 @@ const WorkItem: React.FC<WorkItemProps> = ({ work, onDelete }) => {
           </button>
           <button className="status-toggle-button" onClick={toggleStatus}>
             {status === 'displayed' ? <FaEyeSlash /> : <FaEye />}
+          </button>
+          <button className="client-url-button" onClick={openExternalLink} title="Visit Client URL">
+            <FiExternalLink />
           </button>
         </div>
       </div>

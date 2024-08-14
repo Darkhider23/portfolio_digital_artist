@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# 1. Clone the repository:
+git clone https://github.com/your-username/portfolio-frontend.git
+cd portfolio-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 2. Install dependencies:
+npm install
+# or
+yarn install
 
-## Available Scripts
+# 3.Create a .env file at the root of your project and add the following environment variables:
 
-In the project directory, you can run:
+REACT_APP_API_BASE_URL=http://localhost:3000
 
-### `npm start`
+# 4. Start the development server:
+npm start
+# or
+yarn start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Project Structure
+# The project is structured as follows:
+portfolio-frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── styles/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── routes.tsx
+│   └── ...
+├── .env
+├── package.json
+├── README.md
+└── 
+# src/assets/: Static assets like images and fonts.
+# src/components/: Reusable components like buttons, forms, and cards.
+# src/pages/: Page components representing different views (e.g., Home, WorkDetail).
+# src/styles/: Global and component-specific styles.
+# src/utils/: Utility functions and helpers.
 
-### `npm test`
+# Environment Variables
+# REACT_APP_API_BASE_URL: Base URL for the backend API. This should point to the NestJS backend server.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Available Scripts
+# In the project directory, you can run:
 
-### `npm run build`
+# npm start: Runs the app in the development mode. Open http://localhost:3000 to view it in your browser.
+# npm run build: Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+# Components
+# The application uses modular, reusable components. Here are some key components:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Navbar: The navigation bar, which includes links to different sections of the portfolio.
+# WorkItem: Represents an individual work item in the portfolio, with options to edit, delete, and toggle visibility.
+# WorkForm: Form for adding or editing work items, including image upload functionality.
+# Routing
+# The application uses React Router for client-side routing. The routes are defined in src/routes.tsx. Key routes include:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# /: Home page displaying the portfolio.
+# /works/add: Page for adding a new work.
+# /works/edit/:id: Page for editing an existing work.
+# API Integration
+# API requests are handled using Axios. The base URL for the API is defined in the .env file. The axios instance is configured in the component where it's needed, and API calls are # # made to interact with the backend for operations like fetching, creating, and updating works.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Styling
+# The application uses CSS modules and global CSS for styling. The styles are organized in the src/styles/ directory, with component-specific styles located in the same directory as # their respective components.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Troubleshooting
+# Blank Screen or "Page Not Found" Errors: Ensure that the backend server is running and the REACT_APP_API_BASE_URL is correctly set.
+# CORS Issues: If you're encountering CORS (Cross-Origin Resource Sharing) errors, make sure the backend has the proper CORS configuration.
+# Environment Variables Not Working: Ensure your .env file is properly configured and located in the root of the project.

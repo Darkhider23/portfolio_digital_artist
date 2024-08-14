@@ -8,7 +8,7 @@ const WorkList: React.FC = () => {
   const [works, setWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const showAll = searchParams.get('showall') === 'true';
 
   const baseURL = process.env.REACT_APP_API_BASE_URL;
@@ -55,6 +55,7 @@ const WorkList: React.FC = () => {
           work={{
             ...work,
             status: work.status || 'displayed',
+            clientUrl: work.clientUrl || './'
           }}
           onDelete={handleDelete}
           onUpdate={handleUpdate}

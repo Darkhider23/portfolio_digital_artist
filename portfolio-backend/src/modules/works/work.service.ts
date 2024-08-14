@@ -4,6 +4,8 @@ import { Model, Document } from 'mongoose';
 import { Work, WorkDocument } from './work.schema';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
+import { join } from 'path';
+import { unlinkSync, existsSync } from 'fs';
 
 @Injectable()
 export class WorkService {
@@ -39,6 +41,16 @@ export class WorkService {
   }
 
   async remove(id: string): Promise<void> {
+    const work = await this.findOne(id);
+
+    // Delete the image file if it exists
+    if (work.imageUrl) {
+      const imagePath = join(__dirname, '..', 'public', work.imageUrl);
+      if (existsSync(imagePath)) {
+        unlinkSync(imagePath);
+      }
+    }
+
     const result = await this.workModel.deleteOne({ _id: id }).exec();
     if (result.deletedCount === 0) {
       throw new NotFoundException(`Work with ID ${id} not found`);
@@ -46,8 +58,21 @@ export class WorkService {
   }
 
   async removetitle(title: string): Promise<void> {
-    const result = await this.workModel.deleteOne({ title }).exec();
-    if (result.deletedCount === 0) {
+    const work = await this.workModel.findOne({ title }).exec();
+    if (work) {
+      // Delete the image file if it exists
+      if (work.imageUrl) {
+        const imagePath = join(__dirname, '..', 'public', work.imageUrl);
+        if (existsSync(imagePath)) {
+          unlinkSync(imagePath);
+        }
+      }
+
+      const result = await this.workModel.deleteOne({ title }).exec();
+      if (result.deletedCount === 0) {
+        throw new NotFoundException(`Work with title "${title}" not found`);
+      }
+    } else {
       throw new NotFoundException(`Work with title "${title}" not found`);
     }
   }

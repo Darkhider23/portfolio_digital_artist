@@ -71,3 +71,104 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+# Clone the repository:
+
+git clone https://github.com/your-username/portfolio-backend.git
+cd portfolio-backend
+
+# Install dependencies:
+
+npm install
+# or
+yarn install
+
+# Create a .env file at the root of your project and add the following environment variables:
+
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+
+
+MONGODB_URI=mongodb+srv://guest:vezivapp@mydatabase.enc6jmy.mongodb.net/?retryWrites=true&w=majority&appName=MyDatabase
+
+# Run the development server:
+
+npm run start:dev
+# or
+yarn start:dev
+
+# Project Structure
+The project is structured as follows:
+
+portfolio-backend/
+├── src/
+│   ├── modules/
+│   │   ├── work/
+│   │   │   ├── dto/
+│   │   │   ├── work.controller.ts
+│   │   │   ├── work.service.ts
+│   │   │   ├── work.schema.ts
+│   │   │   └── ...
+│   ├── common/
+│   ├── app.module.ts
+│   ├── main.ts
+│   └── ...
+├── .env
+├── package.json
+├── README.md
+└── ...
+
+# src/modules/: Contains feature modules (e.g., work module for managing works).
+# src/common/: Contains shared services, guards, and other common functionality.
+# app.module.ts: The root module of the application.
+# main.ts: The entry point of the application.
+# Environment Variables
+
+MONGODB_URI: Connection string for MongoDB.
+PORT: Port on which the server will run.
+
+Database Setup
+
+Ensure MongoDB is installed and running. You can use a local instance or a cloud service like MongoDB Atlas.
+Update the MONGODB_URI in your .env file to point to your MongoDB instance.
+
+# Available Scripts
+In the project directory, you can run:
+
+npm run start: Starts the application in production mode.
+npm run start:dev: Starts the application in development mode with hot-reloading.
+npm run build: Builds the application for production.
+npm run lint: Lints the codebase using ESLint.
+
+# API Endpoints
+Works
+GET /works: Retrieve all works with optional pagination.
+GET /works/:id: Retrieve a specific work by ID.
+POST /works: Create a new work. Requires title, description, imageUrl, clientUrl, and status in the request body.
+PATCH /works/:id: Update a work by ID. Supports partial updates.
+DELETE /works/:id: Delete a work by ID.
+PATCH /works/:id/status: Update the status of a work by ID. Accepts status in the request body.
+
+# Example Request
+Create a new work:
+
+POST /works
+Content-Type: application/json
+
+{
+  "title": "New Artwork",
+  "description": "A description of the artwork",
+  "imageUrl": "work_images/new_artwork.jpg",
+  "clientUrl": "http://example.com",
+  "status": "displayed"
+}
+
+# File Uploads
+The backend supports file uploads for work images. Files are stored in the public/work_images directory. When creating or updating a work, the imageUrl field should contain the relative path to the uploaded file.
+
+# Troubleshooting
+
+Database Connection Issues: Check if MongoDB is running and ensure the MONGODB_URI is correct.
+File Upload Errors: Verify that the public/work_images directory has the correct permissions.
+CORS Issues: Ensure that CORS settings are properly configured if the frontend and backend are hosted on different domains.

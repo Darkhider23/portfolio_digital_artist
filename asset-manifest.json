@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Darkhider23/portfolio_digital_artist.git/static/css/main.1b5c74a3.css",
+    "main.js": "/Darkhider23/portfolio_digital_artist.git/static/js/main.388a5c9d.js",
+    "index.html": "/Darkhider23/portfolio_digital_artist.git/index.html",
+    "main.1b5c74a3.css.map": "/Darkhider23/portfolio_digital_artist.git/static/css/main.1b5c74a3.css.map",
+    "main.388a5c9d.js.map": "/Darkhider23/portfolio_digital_artist.git/static/js/main.388a5c9d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b5c74a3.css",
+    "static/js/main.388a5c9d.js"
+  ]
+}
